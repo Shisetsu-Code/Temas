@@ -18,12 +18,14 @@ jobs:
         with:
           python-version: '3.13'
       - name: Syntax and unit tests
-        run: npm run check
+        run: |
+          npm run check
+          node --check public/cinematic/icons.mjs
       - name: Install browser testing tools
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Legacy and cinematic HTTP tests
+      - name: Legacy, cinematic and themed icon HTTP tests
         run: |
           npm run dev > /tmp/temas-new.log 2>&1 &
           PORT=4174 LEGACY_PREVIEW=1 npm run dev > /tmp/temas-legacy.log 2>&1 &
@@ -33,8 +35,11 @@ jobs:
           done
           BASE_URL=http://127.0.0.1:4174 npm run test:legacy
           npm run test:browser
-      - name: Build standalone preview
-        run: python scripts/cinematic-preview.py
+          python tests/icons-browser.py
+      - name: Build and verify standalone preview
+        run: |
+          python scripts/cinematic-preview.py
+          OFFLINE_HTML=test-results/Temas-cinematic.html python tests/icons-browser.py IconTests.test_54_approved_icons_in_gallery IconTests.test_buttons_filters_and_favorites_remain_functional
       - name: Visual evidence
         if: always()
         uses: actions/upload-artifact@v6

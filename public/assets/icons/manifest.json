@@ -1,0 +1,22 @@
+{
+  "source": "User-approved generated icon board in this conversation",
+  "sourceSha256": "3cffaf2e9e3d971a63bfcd835840b2f9fa3aae0405c25e1fc5e397dfc9a9907c",
+  "sourceSize": [1448, 1086],
+  "cellSize": 64,
+  "columns": 6,
+  "assetCount": 54,
+  "format": "Raster artwork with alpha; not vector art. Native illustration resolution about 60–100 px.",
+  "rowsPerStrip": 1,
+  "stripCount": 9,
+  "strips": {
+    "pirates": {"path":"pirates.avif","width":384,"height":64,"bytes":5827,"sha256":"93850cbef2e335d2cdb5089e749d7aa2c5419bb2415ed1676a5a2d7bdd55778d","glyphs":["chest","wheel","compass","cutlasses","map","spyglass"]},
+    "olympus": {"path":"olympus.avif","width":384,"height":64,"bytes":6177,"sha256":"ba587bc87ab3a7026ddf55a162c51cbbb4556059beb699e9b34669ef90e2397d","glyphs":["temple","laurel","lightning","amphora","trident","owl"]},
+    "cyberpunk": {"path":"cyberpunk.avif","width":384,"height":64,"bytes":6387,"sha256":"fc2a9677e408c0cb99a0e8d7c80867962c7c2c24887f95328e3460ab98453a2d","glyphs":["chip","visor","heart","star","cube","radar"]},
+    "steampunk": {"path":"steampunk.avif","width":384,"height":64,"bytes":6791,"sha256":"5f2169026cb3a7a20038874d6e83d0e6d5420d6275914cde3d554f761bd5865b","glyphs":["gear-heart","gauge","compass","monocle","valve","wings"]},
+    "space": {"path":"space.avif","width":384,"height":64,"bytes":5408,"sha256":"9b607a6b09d563f2e4b3958cadc1bdb88ae92734acff11c2d3017d4d30066e62","glyphs":["ufo","orbit","alien","planet","stargate","beam"]},
+    "western": {"path":"western.avif","width":384,"height":64,"bytes":6168,"sha256":"64de7b2363d49938a53d0a302f22d3094c32a31ae1d9e38b40fb100c00e0f50a","glyphs":["badge","revolver","horseshoe","saloon","wheel","cactus"]},
+    "candy": {"path":"candy.avif","width":384,"height":64,"bytes":4671,"sha256":"8f5c5abd4fefc3c3b20d74dfbb1b3785c03914789599e8004d0be2e6fe2d8fe6","glyphs":["swirl","sweet","gumdrop","lollipop","cupcake","star"]},
+    "dinosaurs": {"path":"dinosaurs.avif","width":384,"height":64,"bytes":5998,"sha256":"eca1bddedd4d1da48b46aea794ebd19910d4a9874255eef3fbfc3dea1bdefb95","glyphs":["fossil","claws","egg","leaf","volcano","skull"]},
+    "phoenix": {"path":"phoenix.avif","width":384,"height":64,"bytes":4972,"sha256":"98785e2781c330f396a6b7e2b4519ad1e9e317f1961919e4e5668f03b64d9725","glyphs":["feather","heart","wings","crystal","sun","crest"]}
+  }
+}
