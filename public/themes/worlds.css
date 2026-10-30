@@ -1,0 +1,119 @@
+/* Loaded after the neutral shell. No duplicated page layouts or catalogue styles. */
+@layer worlds {
+  .world-trigger{display:flex;align-items:center;gap:9px;min-height:36px;background:var(--panel);border:1px solid var(--line);border-radius:30px;color:var(--ink);padding:7px 13px;font-size:10px;letter-spacing:0;white-space:nowrap}
+  .world-trigger:hover{border-color:var(--accent)}.world-trigger-dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}.world-current-name{color:var(--accent)}.world-trigger-action{border-left:1px solid var(--line);padding-left:9px;color:var(--muted)}
+  .intro-line{padding-top:19px;padding-bottom:14px}.world-scene{position:absolute;inset:-4% -6% -5% auto;width:69%;pointer-events:none;z-index:1;overflow:visible}.world-scene>svg{width:100%;height:100%;display:block}
+  html[data-world=base] .world-scene{display:none}
+  :where(html:not([data-world=base])[data-world]){--world-radius:8px}
+  html[data-world-font=serif]{--world-font:Georgia,'Times New Roman',serif}
+  html[data-world-font=mono]{--world-font:'Courier New',monospace}
+  html[data-world-font=slab]{--world-font:Rockwell,Georgia,serif}
+  html[data-world-font=sans]{--world-font:'Segoe UI',Arial,sans-serif}
+  :where(html:not([data-world=base])[data-world]) body{background-image:radial-gradient(ellipse at 85% 0,color-mix(in srgb,var(--glow) 7%,transparent),transparent 65%);background-attachment:fixed}
+  :where(html:not([data-world=base])[data-world]) .hero{min-height:405px;background:linear-gradient(115deg,var(--panel),var(--hero));border-radius:calc(var(--world-radius)*2);border-color:color-mix(in srgb,var(--accent) 28%,var(--line))}
+  :where(html:not([data-world=base])[data-world]) .hero::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--panel) 0%,color-mix(in srgb,var(--panel) 90%,transparent) 24%,transparent 68%);z-index:1}
+  :where(html:not([data-world=base])[data-world]) .hero::before{content:'';position:absolute;inset:16px;border:1px solid color-mix(in srgb,var(--accent) 12%,transparent);border-radius:var(--world-radius);pointer-events:none;z-index:0}
+  :where(html:not([data-world=base])[data-world]) .hero-art{display:none}
+  :where(html:not([data-world=base])[data-world]) .hero-gridlines{opacity:.055}
+  :where(html:not([data-world=base])[data-world]) .hero-copy{width:64%;padding-top:41px;padding-bottom:65px;z-index:3}
+  :where(html:not([data-world=base])[data-world]) .hero h1{font-family:var(--world-font);font-size:clamp(37px,3.45vw,57px);font-weight:400;letter-spacing:-.045em;line-height:1.12;margin-top:26px}
+  :where(html:not([data-world=base])[data-world]) .hero h1 em{font-style:italic}
+  :where(html:not([data-world=base])[data-world]) .hero-description{max-width:267px;font-size:12px;line-height:1.8}
+  :where(html:not([data-world=base])[data-world]) .hero-foot{z-index:4}
+  :where(html:not([data-world=base])[data-world]) .hero-foot>span:last-child{font-size:0}
+  :where(html:not([data-world=base])[data-world]) .hero-foot>span:last-child::before{content:'MUNDO / ' attr(data-number);font-size:7px}
+  :where(html:not([data-world=base])[data-world]) .wordmark{font-family:var(--world-font);font-size:24px;letter-spacing:.06em;line-height:1.2;font-weight:500}
+  :where(html:not([data-world=base])[data-world]) .wordmark span{font-family:'Segoe UI',Arial,sans-serif;font-size:6px;letter-spacing:.14em;margin-top:9px}
+  :where(html:not([data-world=base])[data-world]) .monogram{width:42px;height:42px;padding:0;margin-top:29px;margin-bottom:60px;display:grid;place-items:center;color:var(--accent)}
+  .monogram svg{width:38px;height:38px;stroke-width:2}
+  :where(html:not([data-world=base])[data-world]) .button,:where(html:not([data-world=base])[data-world]) .category{border-radius:var(--world-radius)}
+  :where(html:not([data-world=base])[data-world]) .spotlight{background:radial-gradient(ellipse at 50% 30%,color-mix(in srgb,var(--glow) 18%,transparent),transparent 70%),var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:calc(var(--world-radius)*2)}
+  :where(html:not([data-world=base])[data-world]) .spotlight-heading .eyebrow{color:var(--accent)}
+  :where(html:not([data-world=base])[data-world]) .spotlight-art{inset:49px 0 75px;background:none}
+  :where(html:not([data-world=base])[data-world]) .spotlight-bottom h2{font-family:var(--world-font);font-size:27px;color:var(--accent);font-weight:400}
+  :where(html:not([data-world=base])[data-world]) .spotlight .round-button{border-color:var(--line);color:var(--accent)}
+  .world-side-number{position:absolute;font-family:Georgia,serif;font-size:190px;line-height:1;color:var(--accent);opacity:.04;transform:translateY(-15px)}
+  .world-medallion{position:relative;display:grid;place-items:center;width:184px;aspect-ratio:1;border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);border-radius:50%;color:var(--accent)}
+  .world-medallion::before{content:'';position:absolute;inset:-12px;border:1px dashed color-mix(in srgb,var(--accent) 20%,transparent);border-radius:50%}
+  .world-medallion::after{content:'';position:absolute;inset:11px;border:1px solid color-mix(in srgb,var(--accent) 12%,transparent);border-radius:50%}
+  .world-medallion>svg{width:107px;height:107px;transform:none}
+  :where(html:not([data-world=base])[data-world]) .strip-mark{width:71px;min-width:71px;padding:0}.strip-mark svg{width:100%;height:71px}
+  :where(html:not([data-world=base])[data-world]) .editorial-strip{border-color:color-mix(in srgb,var(--accent) 25%,var(--line));border-radius:calc(var(--world-radius)*2)}
+  :where(html:not([data-world=base])[data-world]) .strip-right{max-width:260px}
+  :where(html:not([data-world=base])[data-world]) .game-cover{border-radius:var(--world-radius);border:1px solid color-mix(in srgb,var(--accent) 18%,transparent)}
+  html[data-world=pirates]{--world-radius:6px}
+  html[data-world=pirates] .hero-gridlines{background-image:repeating-radial-gradient(circle at 70% 50%,transparent 0 48px,var(--muted) 49px 50px);background-size:auto;opacity:.13}
+  html[data-world=olympus]{--world-radius:3px}
+  html[data-world=olympus] .hero::before{border-width:1px 4px;border-style:double}
+  html[data-world=cyberpunk]{--world-radius:2px}
+  html[data-world=cyberpunk] .hero,html[data-world=cyberpunk] .spotlight{border-color:#26606b;box-shadow:inset 0 1px #6ff5e022}
+  html[data-world=cyberpunk] .hero h1{font-size:clamp(32px,3vw,49px);font-weight:700;letter-spacing:-.06em}
+  html[data-world=cyberpunk] .hero h1 em{font-style:normal;color:#fc8dcc}
+  html[data-world=cyberpunk] .hero-gridlines{opacity:.15;background-size:32px 32px}
+  html[data-world=cyberpunk] .world-medallion{border-radius:16px;transform:rotate(-6deg)}
+  html[data-world=cyberpunk] .world-medallion::before,html[data-world=cyberpunk] .world-medallion::after{border-radius:12px}
+  html[data-world=steampunk]{--world-radius:5px}
+  html[data-world=steampunk] .hero::before{inset:11px;border-style:dashed}
+  html[data-world=space]{--world-radius:22px}
+  html[data-world=space] .hero h1{font-weight:300;letter-spacing:-.055em;font-size:clamp(34px,3.25vw,53px)}
+  html[data-world=space] .hero h1 em,html[data-world=dinosaurs] .hero h1 em{font-style:normal}
+  html[data-world=western]{--world-radius:4px}
+  html[data-world=western] .hero::before{inset:11px;border:2px dashed #ccad7c33}
+  html[data-world=western] .hero h1{font-weight:700}
+  html[data-world=candy]{--world-radius:23px}
+  html[data-world=candy] .hero::before{border-radius:110px 110px 20px 20px;inset:10px 22px}
+  html[data-world=candy] .hero-gridlines{opacity:.12;background-image:radial-gradient(var(--accent) 1px,transparent 1px);background-size:19px 19px}
+  html[data-world=dinosaurs]{--world-radius:9px}
+  html[data-world=dinosaurs] .hero h1{font-weight:650;letter-spacing:-.06em}
+  html[data-world=phoenix]{--world-radius:12px}
+  html[data-world=phoenix] .hero::before{border-radius:140px 140px 12px 12px;inset:11px}
+  /* A gallery, not a list of nine color swatches. Miniatures never animate. */
+  .studio-dialog{max-width:860px;padding:27px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+  .studio-dialog .dialog-head{align-items:center}.studio-dialog .dialog-head h2{font-family:Georgia,serif;font-size:32px;font-weight:400}.studio-dialog .dialog-copy{margin:12px 0 8px;font-size:12px}
+  .world-active-status{font-size:10px;color:var(--accent);margin:0 0 18px}
+  .world-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+  .world-option{padding:0;overflow:hidden;text-align:left;border-radius:10px;border:1px solid var(--line);background:var(--page);color:var(--ink)}
+  .world-option:hover{border-color:var(--muted)}.world-option[aria-pressed=true]{border-color:var(--option-accent);box-shadow:0 0 0 1px var(--option-accent)}
+  .world-option-preview{position:relative;display:block;height:118px;overflow:hidden;background:linear-gradient(120deg,var(--option-page),var(--option-hero))}
+  .world-option-preview>svg{position:absolute;right:-9%;top:-22%;width:108%;height:145%;display:block}
+  .world-option-number{position:absolute;left:12px;top:11px;color:var(--option-accent);font-family:Georgia,serif;font-size:19px;opacity:.8}
+  .world-selected{display:none;position:absolute;right:10px;top:10px;width:21px;height:21px;border-radius:50%;background:var(--option-accent);color:var(--option-page);text-align:center;font-size:13px;line-height:21px}
+  [aria-pressed=true] .world-selected{display:block}
+  .world-option-copy{display:block;padding:11px 13px}.world-option-copy strong{font-size:12px;font-weight:500;display:block}.world-option-copy small{font-size:8px;letter-spacing:.13em;color:var(--muted);display:block;margin-top:4px}
+  .world-option *, .world-option *::after,.world-option *::before{animation:none!important}
+  .legacy-palettes{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px;padding-top:17px;border-top:1px solid var(--line)}
+  .legacy-option{display:flex;align-items:center;gap:8px;background:var(--page);border:1px solid var(--line);color:var(--muted);border-radius:30px;padding:9px 13px;font-size:11px}
+  .legacy-option[aria-pressed=true]{border-color:var(--accent);color:var(--ink)}.legacy-swatch{width:12px;height:12px;border-radius:50%}
+  .studio-actions{display:flex;gap:12px;justify-content:flex-end;align-items:center;padding-top:17px;border-top:1px solid var(--line)}
+  .studio-actions .button{font-size:11px}.studio-dialog .motion-row{margin-top:18px}.studio-dialog .small-note{margin-bottom:16px}
+  @media(max-width:1250px){:where(html:not([data-world=base])[data-world]) .hero-copy{width:69%;padding-left:27px}:where(html:not([data-world=base])[data-world]) .hero h1{font-size:38px}html[data-world=cyberpunk] .hero h1{font-size:34px}.world-scene{right:-12%;width:78%}:where(html:not([data-world=base])[data-world]) .wordmark{font-size:21px}.world-medallion{width:153px}.world-medallion>svg{width:91px;height:91px}:where(html:not([data-world=base])[data-world]) .spotlight-bottom h2{font-size:24px}}
+  @media(max-width:1000px){:where(html:not([data-world=base])[data-world]) .hero{min-height:395px}:where(html:not([data-world=base])[data-world]) .hero-copy{width:62%}:where(html:not([data-world=base])[data-world]) .hero h1{font-size:48px}.world-scene{right:-3%;width:66%}:where(html:not([data-world=base])[data-world]) .spotlight-art{inset:4px 65px 4px auto;width:170px}.world-medallion{width:107px}.world-medallion>svg{width:68px;height:68px}.world-side-number{font-size:140px}:where(html:not([data-world=base])[data-world]) .spotlight-bottom h2{font-size:25px}.world-trigger-action{display:none}:where(html:not([data-world=base])[data-world]) .header{gap:16px}.studio-dialog{max-width:760px}}
+  @media(max-width:760px){:where(html:not([data-world=base])[data-world]) .hero-copy{width:75%}:where(html:not([data-world=base])[data-world]) .hero h1{font-size:44px}.world-scene{right:-17%;width:87%}:where(html:not([data-world=base])[data-world]) .strip-right{max-width:100%}.world-options{gap:9px}.world-option-preview{height:100px}.world-option-copy{padding:9px}.world-option-copy strong{font-size:11px}}
+  @media(max-width:600px){.intro-line{padding:15px 0 12px;gap:8px}.intro-line>span:first-child{font-size:6px;letter-spacing:.07em}.world-trigger{padding:6px 10px;min-height:32px;font-size:9px;gap:6px}:where(html:not([data-world=base])[data-world]) .hero{min-height:526px}:where(html:not([data-world=base])[data-world]) .hero-copy{width:100%;padding:28px 24px 200px}:where(html:not([data-world=base])[data-world]) .hero h1{font-size:43px;line-height:1.08;margin-top:21px}html[data-world=cyberpunk] .hero h1{font-size:40px}:where(html:not([data-world=base])[data-world]) .hero-description{max-width:250px;font-size:11px;margin-top:16px}:where(html:not([data-world=base])[data-world]) .hero-cta{margin-top:19px}.world-scene{inset:auto -17% -12px auto;width:120%;height:330px;z-index:2}:where(html:not([data-world=base])[data-world]) .hero::after{background:linear-gradient(180deg,var(--panel) 0%,transparent 70%);z-index:1}:where(html:not([data-world=base])[data-world]) .hero-copy{z-index:3}:where(html:not([data-world=base])[data-world]) .hero-foot{left:24px;right:18px}:where(html:not([data-world=base])[data-world]) .hero-foot>span:first-child{max-width:190px;font-size:5px}:where(html:not([data-world=base])[data-world]) .hero-foot>span:last-child::before{font-size:6px}.world-medallion{width:90px}.world-medallion>svg{width:55px;height:55px}.world-medallion::before{inset:-8px}.world-side-number{font-size:100px}:where(html:not([data-world=base])[data-world]) .spotlight-art{right:57px;width:110px}:where(html:not([data-world=base])[data-world]) .spotlight-bottom h2{font-size:22px}:where(html:not([data-world=base])[data-world]) .wordmark{font-size:20px;letter-spacing:.04em}:where(html:not([data-world=base])[data-world]) .monogram{display:none}:where(html:not([data-world=base])[data-world]) .strip-mark{width:52px;min-width:52px}.strip-mark svg{height:55px}.studio-dialog{padding:22px 17px;max-height:calc(100dvh - 28px)}.world-options{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.world-option-preview{height:94px}.world-option-copy strong{font-size:11px}.world-option-copy small{font-size:7px}.studio-dialog .dialog-head h2{font-size:27px}.studio-dialog .dialog-head .eyebrow{font-size:6px}.studio-dialog .dialog-copy{font-size:11px}.studio-actions{gap:8px}.studio-actions .button{font-size:10px;padding:11px}.legacy-option{padding:8px 11px}.world-active-status{margin-bottom:13px}}
+  @media(max-width:380px){:where(html:not([data-world=base])[data-world]) .hero h1{font-size:39px}html[data-world=cyberpunk] .hero h1{font-size:37px}.world-trigger{font-size:8px}.intro-line>span:first-child{font-size:5px}:where(html:not([data-world=base])[data-world]) .header .wordmark{font-size:18px}.world-option-copy strong{font-size:10px}}
+}
+@layer motion {
+  .world-scene .world-hover{animation:world-hover 8s ease-in-out infinite}
+  .world-scene .world-bob{animation:world-bob 9s ease-in-out infinite;transform-origin:center;transform-box:fill-box}
+  .world-scene .world-spin,.world-scene .world-spin-reverse{animation:world-turn 40s linear infinite;transform-origin:center;transform-box:fill-box}
+  .world-scene .world-spin-reverse{animation-direction:reverse;animation-duration:26s}
+  .world-scene .world-wave{animation:world-wave 7s ease-in-out infinite}
+  .world-scene .world-cloud{animation:world-cloud 18s ease-in-out infinite}
+  .world-scene .world-rain{animation:world-rain 5s linear infinite}
+  .world-scene .world-scan{animation:world-scan 6s ease-in-out infinite}
+  .world-scene .world-dust,.world-scene .world-embers{animation:world-dust 10s ease-in-out infinite}
+  .world-scene .world-breathe{animation:world-breathe 9s ease-in-out infinite;transform-origin:50% 80%;transform-box:fill-box}
+  html[data-page-hidden=true] .world-scene *,body:has(#studio-dialog[open]) .world-scene *{animation-play-state:paused!important}
+  @keyframes world-hover{50%{transform:translateY(-9px)}}
+  @keyframes world-bob{50%{transform:translateY(-5px) rotate(1deg)}}
+  @keyframes world-turn{to{transform:rotate(360deg)}}
+  @keyframes world-wave{50%{transform:translateX(10px)}}
+  @keyframes world-cloud{50%{transform:translateX(-17px);opacity:.12}}
+  @keyframes world-rain{0%{transform:translateY(-9px);opacity:.1}50%{opacity:.35}100%{transform:translateY(20px);opacity:.1}}
+  @keyframes world-scan{50%{transform:translateY(74px);opacity:.15}}
+  @keyframes world-dust{50%{transform:translate(7px,-13px);opacity:.4}}
+  @keyframes world-breathe{50%{transform:scale(1.015) translateY(-3px)}}
+  /* Repeat after animations to make the override independent of stylesheet order. */
+  html[data-motion=off] .world-scene *{animation:none!important}
+  @media(prefers-reduced-motion:reduce){.world-scene *{animation:none!important}}
+}

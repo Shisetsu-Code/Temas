@@ -1,3 +1,4 @@
+import { initializeWorlds, applyWorld } from './themes/engine.mjs';
 import { GAMES, THEMES, filterGames, normalizePreferences } from './model.mjs';
 
 const $ = selector => document.querySelector(selector);
@@ -6,8 +7,19 @@ const STORAGE_KEY = 'temas:v1';
 let preferences;
 try { preferences = normalizePreferences(JSON.parse(localStorage.getItem(STORAGE_KEY))); }
 catch { preferences = normalizePreferences(null); }
+const requestedTheme = new URLSearchParams(location.search).get('theme');
+if (requestedTheme && Object.hasOwn(THEMES, requestedTheme)) preferences.theme = requestedTheme;
 const filters = { query:'', category:'all', provider:'all', sort:'featured', favoritesOnly:false };
 let toastTimer;
+
+function syncThemeURL() {
+  try {
+    const url = new URL(location.href);
+    if (!['http:','https:'].includes(url.protocol)) return;
+    url.searchParams.set('theme', preferences.theme);
+    history.replaceState(null, '', url);
+  } catch { /* File previews and restricted history remain functional. */ }
+}
 
 function persist() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(preferences)); }
@@ -94,6 +106,7 @@ function applyTheme() {
   $('meta[name="theme-color"]').content = theme.tokens['--page'];
   $('#motion').checked = preferences.motion;
   $$('[data-theme-choice]').forEach(button => button.setAttribute('aria-pressed',String(button.dataset.themeChoice === preferences.theme)));
+  applyWorld(preferences.theme, theme.name);
   document.dispatchEvent(new CustomEvent('temas:themechange',{ detail:{ theme:preferences.theme, motion:preferences.motion } }));
 }
 function openDialog(dialog, trigger) {
@@ -114,7 +127,7 @@ function preview(id, trigger) {
   document.dispatchEvent(new CustomEvent('temas:preview',{ detail:{ gameId:game.id } }));
 }
 const information = {
-  about: ['Una base. Muchas posibilidades.','Nórd es una identidad provisional para la plantilla Temas. El catálogo, las marcas y las ilustraciones son ejemplos originales. Esta versión prueba diseño e interacción: no es un casino operativo y no afirma tener licencias ni proveedores integrados.'],
+  about: ['Una base. Muchas posibilidades.','Temas usa identidades conceptuales intercambiables. Los nombres no han sido verificados como marcas registrables. El catálogo, las marcas y las ilustraciones son ejemplos originales. Esta versión prueba diseño e interacción: no es un casino operativo y no afirma tener licencias ni proveedores integrados.'],
   responsible: ['El juego tiene límites.','Contenido de demostración dirigido a mayores de 18 años. Jugar no es una forma de generar ingresos. Una implementación operativa deberá incluir verificación de edad, límites, autoexclusión y recursos de ayuda adecuados a su jurisdicción. Esta maqueta no habilita apuestas.'],
   privacy: ['Tus preferencias se quedan acá.','Esta versión guarda únicamente el tema, el movimiento y tus favoritos en el almacenamiento local de este navegador. No usa analítica, cookies de seguimiento, fuentes externas ni envía datos a un servidor. Podés eliminar estas preferencias desde los datos del sitio de tu navegador.'],
   login: ['El acceso se conecta después.','Esta es una demostración de interfaz: no solicita contraseñas, no crea sesiones y no inventa un saldo. El botón está preparado para conectar tu sistema real de autenticación cuando integremos la API.'],
@@ -127,18 +140,7 @@ function showInfo(key,trigger) {
   $('#info-body').textContent = content[1];
   openDialog($('#info-dialog'),trigger);
 }
-for (const [id,theme] of Object.entries(THEMES)) {
-  const button = element('button','theme-option');
-  button.type = 'button';
-  button.dataset.themeChoice = id;
-  const swatch = element('span','theme-swatch');
-  swatch.setAttribute('aria-hidden','true');
-  swatch.style.background = `linear-gradient(135deg,${theme.tokens['--accent']} 0 50%,${theme.tokens['--page']} 50%)`;
-  const copy = element('span');
-  copy.append(element('strong','',theme.name),element('small','',theme.description));
-  button.append(swatch,copy);
-  $('#theme-options').append(button);
-}
+initializeWorlds(THEMES);
 
 document.addEventListener('click',event => {
   const button = event.target.closest('button');
@@ -156,7 +158,7 @@ document.addEventListener('click',event => {
     notify(saved ? 'Juego eliminado de favoritos.' : 'Juego guardado en favoritos.');
   } else if (button.dataset.preview) preview(button.dataset.preview,button);
   else if (button.id === 'open-studio' || button.hasAttribute('data-open-studio')) openDialog($('#studio-dialog'),button);
-  else if (button.dataset.themeChoice) { preferences.theme = button.dataset.themeChoice; applyTheme(); persist(); }
+  else if (button.dataset.themeChoice) { preferences.theme = button.dataset.themeChoice; applyTheme(); persist(); syncThemeURL(); }
   else if (button.hasAttribute('data-close')) button.closest('dialog').close();
   else if (button.dataset.info) showInfo(button.dataset.info,button);
   else if (button.dataset.account) {
@@ -168,7 +170,7 @@ $('#search').addEventListener('input',event => { filters.query = event.target.va
 $('#provider').addEventListener('change',event => { filters.provider = event.target.value; renderCatalog(); });
 $('#sort').addEventListener('change',event => { filters.sort = event.target.value; renderCatalog(); });
 $('#motion').addEventListener('change',event => { preferences.motion = event.target.checked; applyTheme(); persist(); });
-$('#reset-appearance').addEventListener('click',() => { preferences.theme='base'; preferences.motion=true; applyTheme(); persist(); });
+$('#reset-appearance').addEventListener('click',() => { preferences.theme='base'; preferences.motion=true; applyTheme(); persist(); syncThemeURL(); });
 $('#reset-filters').addEventListener('click',() => {
   filters.query=''; filters.provider='all'; filters.sort='featured';
   $('#search').value=''; $('#provider').value='all'; $('#sort').value='featured';

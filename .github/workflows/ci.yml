@@ -27,7 +27,9 @@ jobs:
         run: |
           npm run dev > /tmp/temas-server.log 2>&1 &
           for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:4173/ > /dev/null && break; sleep 1; done
-          python tests/browser.py
+          npm run test:browser
+      - name: Build standalone preview
+        run: python scripts/preview.py
       - name: Visual evidence
         if: always()
         uses: actions/upload-artifact@v6

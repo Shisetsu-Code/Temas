@@ -1,3 +1,5 @@
+import { WORLD_THEMES } from './themes/worlds.mjs';
+
 /** Pure presentation data. Replace this demonstration catalogue with a validated API adapter. */
 export const GAMES = Object.freeze([
   { id:'orbita', name:'Órbita', provider:'Nórd Studio', category:'slots', label:'Original', art:'orbit', color:'#aca4ed', rank:1 },
@@ -14,8 +16,9 @@ export const GAMES = Object.freeze([
   { id:'flora', name:'Flora', provider:'Atelier', category:'slots', label:'Original', art:'flower', color:'#b0baa0', rank:12 },
 ].map(Object.freeze));
 
-/** All themes share a semantic token contract; content never lives in a theme. */
+/** Shared token contract. Game data stays separate from theme presentation. */
 export const THEMES = Object.freeze({
+  ...WORLD_THEMES,
   base: { name:'Estudio', description:'Grafito, marfil y metal. La base neutral.', tokens: {
     '--page':'#131516', '--panel':'#1c1f20', '--panel-raised':'#25292a', '--ink':'#f0eee8', '--muted':'#a1a6a5', '--line':'#343839', '--accent':'#e6e9d5', '--accent-ink':'#22271b', '--glow':'#b7c7b3', '--hero':'#262c29' } },
   ascua: { name:'Ascua', description:'Prueba cromática cálida para futuros temas de fuego.', tokens: {
