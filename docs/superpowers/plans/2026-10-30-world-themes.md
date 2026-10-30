@@ -26,8 +26,22 @@ Repetidos cambios sin IDs duplicados, contexto y foco preservados, storage bloqu
 
 ### Task 3: Entrega
 - [x] Documentar contrato y animaciones; generar HTML autónomo con los mismos archivos.
-- [ ] Publicar con avance seguro de main y comprobar CI HTTP.
+- [x] Publicar con avance seguro de main y comprobar CI HTTP.
 
-## Evidencia y límites
+## Evidencia final — 30 de octubre de 2026
 
-En el entorno de trabajo la navegación Chromium a localhost devolvió ERR_BLOCKED_BY_ADMINISTRATOR. Se respetó la política: la revisión visual local usó `set_content` con un documento offline creado solo a partir de los archivos propios. No se desactivaron restricciones. La persistencia HTTP real, URL y carga de módulos se prueban mediante el workflow nativo de GitHub Actions. La revisión de código es del implementador, no una auditoría independiente.
+Código y pruebas verificados: `205513106e0278f7cc9c282b3a9602ffc415d57b`.
+
+GitHub Actions: https://github.com/Shisetsu-Code/Temas/actions/runs/41055107408
+
+Job `124060549372`: estado `completed`, conclusión `success`. Todos los pasos correctos: sintaxis y 24 pruebas unitarias (9 originales y 15 de temas), 17 pruebas de navegador (9 originales y 8 de mundos), generación de HTML autónomo y subida de capturas.
+
+La primera ejecución detectó una comparación inconsistente del test entre `innerText` y `textContent` para un título con `<br>`. Se reprodujo el fallo sobre un título sin modificar y se corrigió la comprobación con `use_inner_text=True`; no se relajó la igualdad del texto ni se alteró la interfaz para acomodar el test. La segunda ejecución completa pasó.
+
+Se verificaron los nueve mundos en seis anchos, cambios reversibles, preferencias persistentes, enlaces por URL, almacenamiento bloqueado, filtros y favoritos preservados, IDs SVG únicos, foco y movimiento reducido. Las capturas y el archivo autónomo están en el artefacto `interface-screenshots` del workflow.
+
+## Límites de la verificación
+
+En el entorno de trabajo la navegación Chromium a localhost devolvió ERR_BLOCKED_BY_ADMINISTRATOR. Se respetó la política: la revisión visual local usó `set_content` con un documento offline creado solo a partir de los archivos propios. No se desactivaron restricciones. La persistencia HTTP real, URL y carga de módulos se probaron mediante GitHub Actions. La revisión de código es del implementador, no una auditoría independiente ni una comprobación de todos los navegadores.
+
+No se desplegó en Cloudflare ni se conectaron cuentas, pagos o proveedores. Este cambio documental no modifica el código verificado.
