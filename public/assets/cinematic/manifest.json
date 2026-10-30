@@ -1,0 +1,16 @@
+{
+  "source": "Precise illustration crops from the user-approved 1448×1086 AI concept board in this conversation.",
+  "status": "Concept crops, not independent HD or 4K production renders.",
+  "format": "AVIF; compressed for static web delivery. Replace with larger originals when available.",
+  "files": {
+    "western": {"bytes":8059,"sha":"6eba32aeb302e00f4b274df7506f64d6ece0eaf2","dimensions":[250,230],"crop":[1185,454,1435,684]},
+    "pirates": {"bytes":9834,"sha":"ecaaa1da956916697da9517a14fa11dfd0f416b4","dimensions":[261,239],"crop":[211,106,472,345]},
+    "phoenix": {"bytes":9562,"sha":"86114c38d94da5e0b04df36469cf3e0eeec403e0","dimensions":[287,212],"crop":[1148,792,1435,1004]},
+    "cyberpunk": {"bytes":10993,"sha":"a96d50871f5c0fe3b6400c9fa1a4a684df3ca934","dimensions":[291,240],"crop":[1143,108,1434,348]},
+    "steampunk": {"bytes":7219,"sha":"bae3a3dd447fdfbc5e9feb2389ee2973a15a3dbb","dimensions":[203,222],"crop":[269,455,472,677]},
+    "dinosaurs": {"bytes":9699,"sha":"1a176fa854721a0a3c525520427b75a62ee39cfd","dimensions":[270,270],"crop":"Composite: head (507,787,731,883), background (752,786,951,1005); 270x270, soft mask."},
+    "candy": {"bytes":7452,"sha":"63e50c60aa730f65ab1888b0d33a97e72a716824","dimensions":[232,218],"crop":[239,790,471,1008]},
+    "space": {"bytes":7832,"sha":"9a730499f8bfea8e23912e2ff8a6cec4614e70f9","dimensions":[239,226],"crop":[713,451,952,677]},
+    "olympus": {"bytes":8061,"sha":"d0e770befda98223c9f3c3b1eefbf28188527690","dimensions":[235,234],"crop":[716,108,951,342]}
+  }
+}

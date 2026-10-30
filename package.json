@@ -1,16 +1,17 @@
 {
   "name": "temas-casino-base",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": true,
-  "description": "Nine interchangeable casino lobby worlds. No real gambling or production dependencies.",
+  "description": "Cinematic interchangeable casino concept templates; no real gambling.",
   "type": "module",
   "engines": { "node": ">=22" },
   "scripts": {
     "dev": "node scripts/dev.mjs",
     "start": "node scripts/dev.mjs",
     "test": "node --test",
-    "test:browser": "python tests/browser.py && python tests/worlds-browser.py",
-    "preview:standalone": "python scripts/preview.py",
-    "check": "node --check public/app.js && node --check public/model.mjs && node --check public/themes/worlds.mjs && node --check public/themes/art.mjs && node --check public/themes/engine.mjs && node --check scripts/dev.mjs && node --test"
+    "test:browser": "python tests/cinematic-browser.py",
+    "test:legacy": "python tests/browser.py && python tests/worlds-browser.py",
+    "preview:standalone": "python scripts/cinematic-preview.py",
+    "check": "node --check public/cinematic/app.mjs && node --check public/cinematic/schema.mjs && node --check public/cinematic/motion.mjs && node --check scripts/dev.mjs && node --test"
   }
 }

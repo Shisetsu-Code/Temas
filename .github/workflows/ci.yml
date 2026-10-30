@@ -17,19 +17,24 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: '3.13'
-      - name: Syntax and model tests
+      - name: Syntax and unit tests
         run: npm run check
       - name: Install browser testing tools
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Native browser tests
+      - name: Legacy and cinematic HTTP tests
         run: |
-          npm run dev > /tmp/temas-server.log 2>&1 &
-          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:4173/ > /dev/null && break; sleep 1; done
+          npm run dev > /tmp/temas-new.log 2>&1 &
+          PORT=4174 LEGACY_PREVIEW=1 npm run dev > /tmp/temas-legacy.log 2>&1 &
+          for port in 4173 4174; do
+            for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:$port/ > /dev/null && break; sleep 1; done
+            curl --fail --silent http://127.0.0.1:$port/ > /dev/null
+          done
+          BASE_URL=http://127.0.0.1:4174 npm run test:legacy
           npm run test:browser
       - name: Build standalone preview
-        run: python scripts/preview.py
+        run: python scripts/cinematic-preview.py
       - name: Visual evidence
         if: always()
         uses: actions/upload-artifact@v6
