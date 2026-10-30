@@ -37,7 +37,7 @@ class WorldTests(unittest.TestCase):
             self.assertNotEqual(self.page.locator('.hero h1').inner_text(),original)
             self.assertEqual(self.page.evaluate('()=>{const a=[...document.querySelectorAll("[id]")].map(n=>n.id);return a.length-new Set(a).size;}'),0)
         self.choose('base')
-        expect(self.page.locator('.hero h1')).to_have_text(original)
+        expect(self.page.locator('.hero h1')).to_have_text(original, use_inner_text=True)
         expect(self.page.locator('.hero-art')).to_be_visible()
         expect(self.page.locator('.world-scene')).to_be_empty()
     def test_state_and_persistence(self):
