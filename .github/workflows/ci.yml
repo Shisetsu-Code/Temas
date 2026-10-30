@@ -1,0 +1,37 @@
+name: Interface checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.13'
+      - name: Syntax and model tests
+        run: npm run check
+      - name: Install browser testing tools
+        run: |
+          python -m pip install playwright==1.57.0
+          python -m playwright install --with-deps chromium
+      - name: Native browser tests
+        run: |
+          npm run dev > /tmp/temas-server.log 2>&1 &
+          for i in $(seq 1 30); do curl --fail --silent http://127.0.0.1:4173/ > /dev/null && break; sleep 1; done
+          python tests/browser.py
+      - name: Visual evidence
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: interface-screenshots
+          path: test-results/
+          if-no-files-found: ignore
