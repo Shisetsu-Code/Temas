@@ -16,10 +16,23 @@ Los datos de imagen se decodifican desde archivos locales en canvas y se reutili
 
 La integración es funcional; **el arte de portada todavía es provisional**. Seis recortes proceden de conceptos individuales y tienen entre 539 y 600 px de ancho. Los otros doce proceden de un tablero y tienen 247 px de ancho. El manifiesto registra dimensiones, procedencia y hashes. No son renders individuales HD/4K y pierden nitidez ampliados. Los nuevos iconos son vectores de interfaz, no renders 3D equivalentes a los 54 iconos ilustrados originales.
 
-## Verificación
+## Verificación final
 
-Pruebas de registro escritas antes de implementar y comprobadas en rojo (9 en lugar de 27), después en verde. Verificación local: 14 pruebas unitarias correctas, sintaxis de todos los módulos, carga de los 27 temas y 162 iconos, estado/foco/movimiento y filtros; seis anchos de 360 a 1920 px sin desbordamiento. Las capturas locales usan un documento propio autónomo con `set_content`; la navegación HTTP local está bloqueada por el entorno y no se intentó eludir esa política. La captura local masiva se interrumpió por tiempo de ejecución; no se declara que esa ejecución completa haya terminado.
+Código publicado y verificado: `333fb46dc7a2fc448f853ba0b2141d6787344837`.
 
-El workflow mantiene las suites anteriores, actualiza únicamente conteos ampliados y añade `tests/expansion-browser.py`. La evidencia HTTP final debe consultarse en Actions para el commit publicado, no inferirse de pruebas offline. No hubo revisor independiente.
+GitHub Actions: https://github.com/Shisetsu-Code/Temas/actions/runs/41278483437
 
-No se despliega Cloudflare ni se conectan cuentas, wallet, proveedores o apuestas reales.
+Job `124765387619`: estado `completed`, conclusión `success`. Todos los pasos finalizaron correctamente.
+
+- 38 pruebas unitarias correctas; cero fallos.
+- 42 pruebas HTTP en Chromium correctas: 9 del lobby legacy, 8 de mundos originales, 11 cinematográficas, 8 de iconos y 6 de la ampliación.
+- 3 comprobaciones adicionales correctas sobre el HTML autónomo exportado.
+- Artefacto `interface-screenshots`, ID `13086767452`, con 84 archivos: capturas y vista previa autónoma.
+
+La suite de ampliación comprobó carga de los 27 mundos, imágenes e iconos propios, selector de 162 iconos, contadores, búsqueda de temáticas, filtros Todos/Nuevos/Originales, conservación de búsqueda y favoritos, foco y pausa. Verificó los 18 temas añadidos en seis anchos: 360, 390, 768, 1024, 1440 y 1920 px. La captura completa de evidencia terminó correctamente en Actions.
+
+## Límites de las pruebas
+
+La navegación HTTP local está bloqueada por el entorno; no se eludió esa política. Las comprobaciones locales usaron un documento propio autónomo con `set_content`; los resultados HTTP finales proceden del workflow remoto. Una captura local masiva anterior se interrumpió por tiempo de ejecución, y no se contabiliza como ejecución completa. No hubo revisor independiente. Estas pruebas no sustituyen una auditoría integral de accesibilidad ni validación en todos los navegadores.
+
+No se desplegó Cloudflare ni se conectaron cuentas, wallet, proveedores o apuestas reales. Este cambio documental no altera el código verificado.
