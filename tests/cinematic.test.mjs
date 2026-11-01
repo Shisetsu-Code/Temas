@@ -3,8 +3,8 @@ import assert from 'node:assert/strict';
 import { WORLDS, WORLD_IDS, normalizeState, resolveWorld, GAMES, filterGames } from '../public/cinematic/schema.mjs';
 import { canAnimate, particleBudget } from '../public/cinematic/motion.mjs';
 const ids=['pirates','olympus','cyberpunk','steampunk','space','western','candy','dinosaurs','phoenix'];
-test('all nine approved worlds have distinct artwork, branding and effect',()=>{
- assert.deepEqual(WORLD_IDS,ids);
+test('original nine approved worlds retain their artwork, branding and effect',()=>{
+ assert.deepEqual(WORLD_IDS.slice(0,9),ids);
  assert.equal(new Set(ids.map(id=>WORLDS[id].art)).size,9);
  assert.equal(new Set(ids.map(id=>WORLDS[id].brand)).size,9);
  assert.equal(new Set(ids.map(id=>WORLDS[id].effect)).size,9);

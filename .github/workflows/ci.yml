@@ -20,12 +20,12 @@ jobs:
       - name: Syntax and unit tests
         run: |
           npm run check
-          node --check public/cinematic/icons.mjs
+          for f in public/cinematic/*.mjs; do node --check "$f"; done
       - name: Install browser testing tools
         run: |
           python -m pip install playwright==1.57.0
           python -m playwright install --with-deps chromium
-      - name: Legacy, cinematic and themed icon HTTP tests
+      - name: Legacy, cinematic and expanded HTTP tests
         run: |
           npm run dev > /tmp/temas-new.log 2>&1 &
           PORT=4174 LEGACY_PREVIEW=1 npm run dev > /tmp/temas-legacy.log 2>&1 &
@@ -36,10 +36,12 @@ jobs:
           BASE_URL=http://127.0.0.1:4174 npm run test:legacy
           npm run test:browser
           python tests/icons-browser.py
+          python tests/expansion-browser.py
       - name: Build and verify standalone preview
         run: |
           python scripts/cinematic-preview.py
           OFFLINE_HTML=test-results/Temas-cinematic.html python tests/icons-browser.py IconTests.test_54_approved_icons_in_gallery IconTests.test_buttons_filters_and_favorites_remain_functional
+          OFFLINE_HTML=test-results/Temas-cinematic.html python tests/expansion-browser.py ExpansionTests.test_counter_and_gallery
       - name: Visual evidence
         if: always()
         uses: actions/upload-artifact@v6

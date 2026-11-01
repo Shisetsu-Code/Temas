@@ -1,0 +1,22 @@
+{
+  "note": "Concept art, not individual HD/4K renders. Six scenes derive from individual layouts; twelve from a concept board. See expansion-art.mjs for exact atlas rectangles. Original PNG layouts remain in the conversation.",
+  "files": {
+    "scenes-0.avif": {"width":1800,"height":310,"bytes":24432,"sha256":"ef08715cb93e00739ba1877fae816f897b21aae008295b47bd47d807ceb2cdba"},
+    "scenes-1.avif": {"width":1800,"height":310,"bytes":21585,"sha256":"207395a5d089e90fb358ae6040720df692ddf329ea10e442faa5f5625e20e639"},
+    "scenes-2.avif": {"width":1680,"height":135,"bytes":11756,"sha256":"857fa66df5160a1f557dfd3affaef260139f38db1c13a4ecbd64393100f13e81"},
+    "scenes-3.avif": {"width":1680,"height":135,"bytes":12813,"sha256":"9a0e112e93128d2d0fb558e98e7f357c3fcd38a6befb06eff7e3e0b7bd1bdb4a"}
+  },
+  "individualConcepts": {
+    "egypt": {"source":"marea_egipto_oscuro_y_fortuna.png","sourceDimensions":[1491,1055],"crop":[530,65,1290,431],"deliveredDimensions":[600,289]},
+    "japan": {"source":"marea_leyendas_del_casino_japonés.png","sourceDimensions":[1491,1055],"crop":[530,72,1375,430],"deliveredDimensions":[600,254]},
+    "china": {"source":"imperio_de_la_fortuna_marea.png","sourceDimensions":[1491,1055],"crop":[570,70,1450,440],"deliveredDimensions":[600,253]},
+    "atlantis": {"source":"marea_casino_de_otro_mundo.png","sourceDimensions":[1491,1055],"crop":[515,70,1250,479],"deliveredDimensions":[539,300]},
+    "vampires": {"source":"marea_casino_gótico_bajo_la_luna.png","sourceDimensions":[1491,1055],"crop":[530,72,1250,445],"deliveredDimensions":[579,300]},
+    "racing": {"source":"casino_marea_lujo_velocidad_y_emoción.png","sourceDimensions":[1491,1055],"crop":[550,132,1450,447],"deliveredDimensions":[600,210]}
+  },
+  "conceptBoard": {
+    "source":"a_wide_high_resolution_promotional_collage_spla.png","sourceDimensions":[1536,1024],
+    "scenes":{"india":[772,3,1019,110],"vikings":[1028,3,1275,110],"dragons":[4,347,251,466],"artdeco":[516,347,763,466],"masquerade":[772,347,1019,466],"muertos":[1028,347,1275,466],"alchemy":[1284,347,1531,466],"ice":[4,697,251,816],"forest":[260,697,507,816],"wasteland":[772,697,1019,816],"eldorado":[1028,697,1275,816],"astral":[1284,697,1531,816]},
+    "deliveredWidth":247,"quality":"provisional low-resolution concept crops; not suitable as final HD hero illustrations"
+  }
+}

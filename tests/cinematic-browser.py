@@ -23,7 +23,7 @@ class CinematicTests(unittest.TestCase):
   expect(self.p.locator('html')).to_have_attribute('data-world',id)
   expect(self.p.locator('#world-dialog')).not_to_be_visible()
  def test_nine_illustrated_worlds_with_real_text(self):
-  expect(self.p.locator('[data-world-choice]')).to_have_count(9)
+  expect(self.p.locator('[data-world-choice]')).to_have_count(27)
   titles=[]
   for id in IDS:
    self.choose(id);titles.append(self.p.locator('#hero-title').inner_text())

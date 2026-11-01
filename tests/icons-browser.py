@@ -39,7 +39,7 @@ class IconTests(unittest.TestCase):
   expect(self.page.locator('#world-dialog')).not_to_be_visible()
  def test_54_approved_icons_in_gallery(self):
   expect(self.page.locator('html')).to_have_attribute('data-icons-ready','true')
-  expect(self.page.locator('.world-choice-icons .theme-icon')).to_have_count(54)
+  expect(self.page.locator('.world-choice-icons .theme-icon')).to_have_count(162)
   for world in WORLDS:
    expect(self.page.locator(f'[data-world-choice="{world}"] [data-icon-family="{world}"]')).to_have_count(6)
   expect(self.page.locator('.theme-icon .theme-icon')).to_have_count(0)

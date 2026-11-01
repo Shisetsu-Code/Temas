@@ -1,3 +1,5 @@
+import { EXPANSION_ART } from './expansion-art.mjs';
+import { EXPANSION } from './expansion.mjs';
 import { GAMES, filterGames } from '../model.mjs';
 export { GAMES, filterGames };
 
@@ -14,8 +16,9 @@ const configs={
  dinosaurs:define('Dinosaurios','TERRANOVA','BEFORE EVERYTHING. BEYOND ORDINARY.',['Lo extraordinario','está despierto.'],'Cruzá la niebla. Entrá en un mundo que el tiempo no pudo borrar.', ['#091810','#14271b','#d0e59d','#edf2de','#afbfaa'],'spores','leaf'),
  phoenix:define('Fénix','IGNIS','EVERY LEGEND BEGINS WITH A SPARK',['Todo comienza','con una chispa.'],'De la oscuridad al fuego. Una experiencia que deja huella.', ['#1a0b0d','#2c1516','#f7c277','#faeedb','#c5aaa2'],'embers','flame'),
 };
+Object.assign(configs,EXPANSION);
 export const WORLD_IDS=Object.freeze(Object.keys(configs));
-export const WORLDS=Object.freeze(Object.fromEntries(WORLD_IDS.map((id,index)=>[id,Object.freeze({...configs[id],id,index,art:`assets/cinematic/${id}.avif`,light:id==='candy'})])));
+export const WORLDS=Object.freeze(Object.fromEntries(WORLD_IDS.map((id,index)=>[id,Object.freeze({...configs[id],id,index,art:EXPANSION_ART[id]?.file||`assets/cinematic/${id}.avif`,light:id==='candy'})])));
 export const COVER_WORLDS=Object.freeze({orbita:'space',velvet:'cyberpunk',solstice:'phoenix',blackjack:'steampunk',monolith:'olympus',bloom:'candy',eclipse:'pirates',baccarat:'western',prisma:'space',solar:'phoenix',ruleta:'olympus',flora:'dinosaurs'});
 export function resolveWorld(value,fallback='pirates') {
  return typeof value==='string' && Object.hasOwn(WORLDS,value) ? value : (typeof fallback==='string' && Object.hasOwn(WORLDS,fallback) ? fallback : 'pirates');

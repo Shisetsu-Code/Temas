@@ -1,0 +1,57 @@
+/* Existing nine worlds are preserved. The expansion has its own materials and frames. */
+.universe-tools{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:end;margin:0 0 20px;padding:16px;border:1px solid var(--line);background:var(--panel);border-radius:6px}
+.universe-tools label{font-size:10px;color:var(--muted);display:block}.universe-tools input{display:block;width:100%;margin-top:7px;min-height:39px;padding:10px 12px;border:1px solid var(--line);border-radius:4px;background:var(--bg);color:var(--ink);font:12px Arial,sans-serif}
+.universe-groups{display:flex;gap:7px;flex-wrap:wrap}.universe-groups button{min-height:39px;padding:9px 12px;border:1px solid var(--line);background:var(--bg);color:var(--muted);font-size:10px;border-radius:4px}.universe-groups [aria-pressed=true]{color:var(--bg);background:var(--accent);border-color:var(--accent)}
+.world-empty{padding:30px;font-size:13px;text-align:center;color:var(--muted)}
+.world-choice[hidden]{display:none!important}.world-choice strong{overflow-wrap:anywhere}.world-choice-icons{max-width:100%}
+html[data-expansion=true] .brand-name{font-size:clamp(18px,2vw,27px);letter-spacing:.07em}
+html[data-expansion=true] .hero-copy h1{font-family:var(--expansion-font,Georgia,serif);font-size:clamp(44px,5.1vw,73px);max-width:710px}
+html[data-expansion=true] .hero-copy .eyebrow{font-size:8px;letter-spacing:.19em}
+html[data-expansion=true] .hero::before{content:'';position:absolute;inset:15px 23px;border:1px solid var(--line);z-index:3;pointer-events:none}
+html[data-expansion=true] .scene-image{object-fit:cover;width:73%;max-width:73%;height:100%;right:0;mask-image:linear-gradient(90deg,transparent,#000 25%);object-position:70% center}
+html[data-world=egypt] .hero::before{border-style:double;border-width:3px}.hero[data-style=egypt]{background-blend-mode:screen}
+html[data-world=egypt] .button{clip-path:polygon(7px 0,calc(100% - 7px) 0,100% 7px,100% calc(100% - 7px),calc(100% - 7px) 100%,7px 100%,0 calc(100% - 7px),0 7px)}
+html[data-world=japan] .hero::before{border:0;border-left:3px solid var(--accent);left:25px;opacity:.25}
+html[data-world=japan] .hero h1 em{font-style:normal}.category-deck{position:relative}
+html[data-world=japan] .category.active::after{height:3px;background:#e35868}
+html[data-world=china] .hero::before{border:3px double var(--accent);opacity:.3;inset:13px}
+html[data-world=china] .category-deck{border-top:3px double var(--line)}
+html[data-world=china] .button{box-shadow:inset 0 0 0 3px #8d3d2730}
+html[data-world=india] .hero::before{border-radius:160px 160px 12px 12px;border-width:2px;opacity:.6}
+html[data-world=india] .category-deck{border-radius:35px 35px 0 0}
+html[data-world=vikings] .hero::before{border:2px dashed var(--line)}
+html[data-world=vikings] .button{border-radius:1px;box-shadow:inset 0 0 0 3px #29445333}
+html[data-world=atlantis] .scene-orbit{opacity:.25;rotate:-12deg;border:1px solid var(--accent);animation:turn 95s linear infinite}
+html[data-world=atlantis] .category-deck{border-radius:60px;border:1px solid var(--line)}
+html[data-world=atlantis] .button{border-radius:18px}
+html[data-world=dragons] .hero::before{clip-path:polygon(0 0,100% 0,100% 90%,95% 100%,5% 100%,0 90%);border-width:2px}
+html[data-world=dragons] .category.active{box-shadow:inset 0 -2px #d66536}
+html[data-world=vampires] .hero::before{border-radius:50% 50% 2px 2px;border:2px double var(--line)}
+html[data-world=vampires] .button{background:linear-gradient(135deg,#742737,#3e1426);color:#fff1e8;border:1px solid #ce9aa5}
+html[data-world=vampires] .scene-light{background:radial-gradient(ellipse at 74% 30%,#a5243930,transparent 60%)}
+html[data-world=artdeco] .hero::before{border:4px double var(--line);inset:11px 20px}
+html[data-world=artdeco] .category-deck{background:linear-gradient(45deg,transparent 48%,#d1b07508 49%,transparent 52%),var(--panel);background-size:30px 30px}
+html[data-world=masquerade] .hero::before{border-radius:90px 90px 8px 8px;border-style:double;border-width:3px}
+html[data-world=masquerade] .button{border-radius:20px 3px 20px 3px}
+html[data-world=muertos] .hero::before{border:3px dotted #efa65155;border-radius:13px}
+html[data-world=muertos] .category-deck{border-color:#ed96534d}
+html[data-world=alchemy] .scene-orbit{opacity:.3;border:3px double var(--accent);width:190px;height:190px;animation:turn 85s linear infinite}
+html[data-world=alchemy] .hero::before{border-style:dashed;opacity:.5}
+html[data-world=ice] .hero::before{clip-path:polygon(0 6%,4% 0,96% 0,100% 6%,100% 94%,96% 100%,4% 100%,0 94%);border-color:#b9ecff66}
+html[data-world=ice] .button{box-shadow:inset 0 0 0 3px #ffffff40}
+html[data-world=forest] .hero::before{border-radius:100px 8px 100px 8px;border-color:#afbc6055}
+html[data-world=forest] .button{border-radius:18px 2px 18px 2px}
+html[data-world=racing] .hero h1,html[data-world=wasteland] .hero h1{font-weight:750;letter-spacing:-.055em}
+html[data-world=racing] .hero h1 em,html[data-world=wasteland] .hero h1 em{font-style:normal;font-weight:750}
+html[data-world=racing] .hero::before{border:0;border-bottom:4px solid #db393d55;rotate:-1deg}
+html[data-world=racing] .button{clip-path:polygon(9px 0,100% 0,calc(100% - 9px) 100%,0 100%)}
+html[data-world=racing] .category-deck{background:repeating-linear-gradient(45deg,#0e171d 0 3px,#152029 4px 7px)}
+html[data-world=wasteland] .hero::before{border:2px dashed #ba8f5670}
+html[data-world=wasteland] .button{border-radius:0;box-shadow:inset 0 0 0 2px #5c4228}
+html[data-world=eldorado] .hero::before{border-width:3px 7px;border-style:double}
+html[data-world=eldorado] .category-deck{border-top:4px double var(--line)}
+html[data-world=astral] .scene-orbit{opacity:.35;width:230px;height:230px;border:2px dotted var(--accent);animation:turn 100s linear infinite}
+html[data-world=astral] .hero::before{border-radius:160px 160px 3px 3px}
+@media(max-width:1000px){html[data-expansion=true] .hero-copy h1{font-size:53px;max-width:590px}.universe-tools{grid-template-columns:1fr}.universe-groups{justify-content:flex-start}}
+@media(max-width:600px){html[data-expansion=true] .hero-copy h1{font-size:clamp(33px,9.8vw,43px);max-width:100%;overflow-wrap:break-word}html[data-expansion=true] .hero-copy{padding-top:229px}html[data-expansion=true] .scene-image{width:100%;max-width:100%;height:360px;right:0;object-fit:cover;object-position:72% 40%;mask-image:linear-gradient(0deg,transparent,#000 28%)}html[data-expansion=true] .hero::before{inset:10px;opacity:.4}html[data-expansion=true] .hero-copy .eyebrow{font-size:6px;letter-spacing:.1em}html[data-expansion=true] .brand-name{font-size:19px}.universe-tools{padding:12px;gap:12px}.universe-groups button{padding:9px 8px;font-size:9px}.world-choice strong{font-size:17px}.world-choice:last-child{grid-column:auto}.world-choice{height:165px}.world-choice-icons .theme-icon{width:22px;height:22px}}
+@media(prefers-reduced-motion:reduce){html[data-expansion=true] .scene-orbit{animation:none!important}}

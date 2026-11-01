@@ -1,7 +1,9 @@
+import { EXPANDED_ICON_FAMILIES } from './expansion-icons.mjs';
 /** Original, approved raster silhouettes; atlas cells are NOT recolored at runtime. */
 export const ICON_ROLES=Object.freeze(['home','discover','games','slots','live','table','favorites','search','account','worlds','promotions','rewards','tournaments']);
 const family=(row,glyphs,primary,extras={})=>Object.freeze({row,glyphs:Object.freeze(glyphs.split(' ')),roles:Object.freeze({...Object.fromEntries(['discover','slots','live','table','favorites','search'].map((r,i)=>[r,primary[i]])),home:primary[0],games:primary[1],account:primary[4],worlds:primary[0],promotions:primary[2],rewards:primary[4],tournaments:primary[3],...extras})});
 export const ICON_FAMILIES=Object.freeze({
+ ...EXPANDED_ICON_FAMILIES,
  pirates:family(0,'chest wheel compass cutlasses map spyglass',['map','wheel','cutlasses','compass','chest','spyglass'],{home:'compass',account:'chest',rewards:'chest',tournaments:'cutlasses'}),
  olympus:family(1,'temple laurel lightning amphora trident owl',['temple','amphora','lightning','trident','laurel','owl'],{account:'owl',rewards:'laurel',tournaments:'trident'}),
  cyberpunk:family(2,'chip visor heart star cube radar',['visor','chip','cube','star','heart','radar'],{account:'visor',worlds:'radar',rewards:'cube',promotions:'star'}),

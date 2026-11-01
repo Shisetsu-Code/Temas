@@ -1,3 +1,4 @@
+import { expansionIconUrl } from './expansion-icons.mjs';
 import { ICON_FAMILIES, resolveIcon } from './icon-registry.mjs';
 
 /** Presentation adapter: never changes IDs, click handlers, state, labels or tab order. */
@@ -6,7 +7,7 @@ export function initializeThemedIcons(doc=document){
  doc.documentElement.dataset.iconsInstalled='true';
  const win=doc.defaultView,root=doc.documentElement;
  const status=new Map();
- const assets=Object.fromEntries(Object.keys(ICON_FAMILIES).map(id=>[id,globalThis.TEMAS_ICONS?.[id]||`assets/icons/${id}.avif`]));
+ const assets=Object.fromEntries(Object.keys(ICON_FAMILIES).map(id=>[id,globalThis.TEMAS_ICONS?.[id]||expansionIconUrl(id)||`assets/icons/${id}.avif`]));
  const used=new Set(),observers=[];
  let active=root.dataset.world||'pirates';
 
@@ -76,7 +77,7 @@ export function initializeThemedIcons(doc=document){
   function settle(ok){
    status.set(id,ok?'true':'error');
    for(const el of used)if(el.dataset.iconFamily===id)paint(el);
-   if(status.size===9)root.dataset.iconsReady=[...status.values()].every(v=>v==='true')?'true':'error';
+   if(status.size===Object.keys(ICON_FAMILIES).length)root.dataset.iconsReady=[...status.values()].every(v=>v==='true')?'true':'error';
   }
   probe.onload=()=>settle(probe.naturalWidth===384&&probe.naturalHeight===64);
   probe.onerror=()=>settle(false);probe.src=assets[id];

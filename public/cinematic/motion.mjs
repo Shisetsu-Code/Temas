@@ -49,14 +49,18 @@ export class Atmosphere {
   if(now-this.last<32)return; // At most ~30 painted frames/second.
   const dt=this.last?Math.min((now-this.last)/1000,.07):.033;this.last=now;
   const c=this.ctx;c.clearRect(0,0,this.width,this.height);c.strokeStyle=this.color;c.fillStyle=this.color;
-  const rain=['rain','spray'].includes(this.effect),steam=['steam','clouds'].includes(this.effect);
+  const rain=['rain','spray'].includes(this.effect),steam=['steam','clouds','mist'].includes(this.effect);
   for(const p of this.particles){
-   p.phase+=dt*.5;p.y+=(rain?1:-1)*p.speed*dt*(rain?3:1);p.x+=(rain?-9:Math.sin(p.phase)*7)*dt;
+   p.phase+=dt*.5;p.y+=((rain||['snow','petals','marigold'].includes(this.effect))?1:-1)*p.speed*dt*(rain?3:1);p.x+=(rain?-9:Math.sin(p.phase)*7)*dt;
    if(p.y>this.height+20)p.y=-20;if(p.y<-20)p.y=this.height+20;
    if(p.x<-20)p.x=this.width+20;if(p.x>this.width+20)p.x=-20;
    c.globalAlpha=steam?.045:.13+Math.abs(Math.sin(p.phase))*.28;
    if(rain){c.lineWidth=.6;c.beginPath();c.moveTo(p.x,p.y);c.lineTo(p.x-2,p.y+8+p.r*3);c.stroke();}
-   else if(this.effect==='sugar'){c.save();c.translate(p.x,p.y);c.rotate(p.phase);c.fillRect(-p.r,-p.r,p.r*1.4,p.r*3);c.restore();}
+   else if(['petals','marigold'].includes(this.effect)){c.save();c.translate(p.x,p.y);c.rotate(p.phase);c.beginPath();c.ellipse(0,0,p.r*2.4,p.r,0,0,Math.PI*2);c.fill();c.restore();}
+   else if(this.effect==='bubbles'){c.globalAlpha=.22;c.lineWidth=.7;c.beginPath();c.arc(p.x,p.y,p.r*2.5,0,Math.PI*2);c.stroke();}
+   else if(this.effect==='constellations'){c.lineWidth=.5;c.beginPath();c.moveTo(p.x-3,p.y);c.lineTo(p.x+3,p.y);c.moveTo(p.x,p.y-3);c.lineTo(p.x,p.y+3);c.stroke();}
+   else if(this.effect==='sparks'){c.lineWidth=1;c.beginPath();c.moveTo(p.x,p.y);c.lineTo(p.x+12,p.y+2);c.stroke();}
+   else if(['sugar','lanterns'].includes(this.effect)){c.save();c.translate(p.x,p.y);c.rotate(p.phase);c.fillRect(-p.r,-p.r,p.r*1.4,p.r*3);c.restore();}
    else {c.beginPath();c.arc(p.x,p.y,steam?p.r*11:p.r,0,Math.PI*2);c.fill();}
   }
   c.globalAlpha=1;

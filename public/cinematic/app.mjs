@@ -1,3 +1,5 @@
+import { prepareExpansionArt } from './expansion-art.mjs';
+import { initializeExpansionUI } from './expansion-ui.mjs';
 import { WORLDS, WORLD_IDS, GAMES, COVER_WORLDS, filterGames, resolveWorld, normalizeState } from './schema.mjs';
 import { Atmosphere } from './motion.mjs';
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
@@ -11,7 +13,7 @@ const atmosphere=new Atmosphere($('#atmosphere'),$('#hero'));
 function node(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
 function icon(name){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('class','icon');s.setAttribute('aria-hidden','true');const u=document.createElementNS(s.namespaceURI,'use');u.setAttribute('href',`#i-${name}`);s.append(u);return s;}
 // Offline export supplies only application-owned data URLs. HTTP deployment uses local AVIF files.
-const art=id=>globalThis.TEMAS_ART?.[id]||WORLDS[id].art;
+const art=id=>globalThis.TEMAS_ART?.[id]||(WORLDS[id].expansion?'data:image/png;base64,AAAA':WORLDS[id].art);
 function image(id,cls=''){const img=node('img',cls);img.alt='';img.loading='lazy';img.decoding='async';img.src=art(id);img.addEventListener('error',()=>{img.hidden=true;});return img;}
 function persist(){try{localStorage.setItem(KEY,JSON.stringify(state));}catch{/* Private/restricted browsing keeps working. */}}
 function syncURL(){try{if(!['http:','https:'].includes(location.protocol))return;const url=new URL(location.href);url.searchParams.set('theme',state.theme);history.replaceState(null,'',url);}catch{/* Sandboxed/offline preview. */}}
@@ -27,7 +29,7 @@ async function setWorld(value,{save=false}={}){
   if(version!==epoch)return false;
   const w=WORLDS[id];state.theme=id;applied=id;
   const root=document.documentElement;
-  root.dataset.world=id;
+  root.dataset.world=id;root.dataset.expansion=String(Boolean(w.expansion));root.style.setProperty('--expansion-font',w.font||'Georgia,serif');
   ['--bg','--panel','--accent','--ink','--muted'].forEach((key,i)=>root.style.setProperty(key,w.colors[i]));
   $('meta[name="theme-color"]').content=w.colors[0];
   document.title=`${w.brand} — ${w.name} · Demo visual`;
@@ -105,7 +107,7 @@ function openDialog(dialog,trigger){
 const information={
  login:['Tu acceso, próximamente.','Esta versión muestra la interfaz: no solicita contraseñas, no crea sesiones y no inventa un saldo. El acceso se conectará al sistema de autenticación real.'],
  register:['La experiencia empieza en el diseño.','El registro y la verificación de edad todavía no están conectados. Esta demo no solicita datos personales, contraseñas ni depósitos.'],
- about:['Nueve universos. Una base real.','Esta edición integra la dirección visual aprobada en una web funcional. Las ilustraciones proceden de recortes del concepto generado en esta conversación; no son renders individuales de alta resolución. Las escenas, personajes y marcas son de muestra. La animación ambiental usa CSS y partículas: no es animación 3D ni esqueletal.'],
+ about:['27 universos. Una base real.','Esta edición integra la dirección visual aprobada en una web funcional. Las ilustraciones proceden de recortes del concepto generado en esta conversación; no son renders individuales de alta resolución. Las escenas, personajes y marcas son de muestra. La animación ambiental usa CSS y partículas: no es animación 3D ni esqueletal.'],
  responsible:['Explorar con responsabilidad.','Demo visual para mayores de 18 años, sin apuestas ni premios reales. El juego no es una fuente de ingresos. Un servicio operativo necesitará verificación de edad, límites, autoexclusión y recursos de ayuda adecuados a su jurisdicción.'],
  privacy:['Tus preferencias se quedan acá.','El tema, los favoritos y el movimiento se guardan únicamente en este navegador. No hay seguimiento, fuentes externas ni envío de datos de cuenta. Podés borrar las preferencias eliminando los datos del sitio.'],
 };
@@ -138,5 +140,5 @@ $('#sort').addEventListener('change',e=>{filters.sort=e.target.value;renderCatal
 $('#reset-filters').addEventListener('click',()=>{Object.assign(filters,{query:'',provider:'all',sort:'featured'});$('#search').value='';$('#provider').value='all';$('#sort').value='featured';category('all');$('#search').focus({preventScroll:true});});
 for(const dialog of $$('dialog'))dialog.addEventListener('click',e=>{if(e.target!==dialog)return;const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close();});
 document.addEventListener('keydown',e=>{if(e.key==='/'&&!e.ctrlKey&&!e.metaKey&&!e.altKey&&!$('dialog[open]')&&!e.target.closest('input,select,textarea,[contenteditable]')){e.preventDefault();$('#search').focus();}});
-async function init(){renderCatalog();renderGallery();await setWorld(state.theme);document.documentElement.dataset.ready='true';}
+async function init(){await prepareExpansionArt();initializeExpansionUI(WORLD_IDS);renderCatalog();renderGallery();await setWorld(state.theme);document.documentElement.dataset.ready='true';}
 init().catch(()=>{document.documentElement.dataset.ready='error';$('#results-count').textContent='No se pudo iniciar la vista. Recargá la página.';});
